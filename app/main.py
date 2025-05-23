@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 from dotenv import load_dotenv
 
-from app.api.api_router import router as api_v1_router
+from app.routes.api_router import router as api_v1_router
 #from app.api.templates_router import router as templates_router
 
 templates = Jinja2Templates(directory="frontend/templates")
