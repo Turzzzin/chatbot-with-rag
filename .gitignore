@@ -172,3 +172,10 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+#vectorstore
+#vectorstore
+app/data/vectorstores
+app/data/vectorstores/*
+notebooks/my_chromadb/*

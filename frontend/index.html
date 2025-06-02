@@ -1,42 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="pt-BR">
+<head>
     <title>Chatbot RAG</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="./styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:400,700,300"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css"
-    />
-    <script>
-      const API_URL = "${API_URL}";
-    </script>
-  </head>
-  <body>
+    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,300" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css" />
+</head>
+<body>
     <div class="card">
-      <div id="message-section">
-        <div class="message" id="bot">
-          <span id="bot-response">Olá, como posso te ajudar hoje?</span>
+        <div id="message-section">
+            <div class="message bot-message">
+                <span>Olá, como posso te ajudar hoje?</span>
+            </div>
         </div>
-      </div>
-      <div id="input-section">
-        <input
-          id="input"
-          type="text"
-          placeholder="Type a message"
-          autocomplete="off"
-          autofocus="autofocus"
-        />
-        <button class="send" onclick="sendMessage()">
-          <div class="circle"><i class="zmdi zmdi-mail-send"></i></div>
-        </button>
-      </div>
+        <div id="input-section">
+            <input
+                id="input"
+                type="text"
+                placeholder="Digite sua mensagem"
+                autocomplete="off"
+                autofocus="autofocus"
+            />
+            <button class="send" id="btnEnviar" type="button">
+                <div class="circle"><i class="zmdi zmdi-mail-send"></i></div>
+            </button>
+        </div>
     </div>
-    <script defer src="./script.js"></script>
-  </body>
+    <script src="/static/script.js"></script>
+</body>
 </html>
