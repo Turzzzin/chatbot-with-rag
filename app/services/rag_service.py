@@ -19,12 +19,13 @@ def initialize_rag():
 
         vector_store = Chroma(
             persist_directory=settings.CHROMA_DB_PATH,
-            embedding_function=embeddings
+            embedding_function=embeddings,
+
         )
 
         llm = ChatPerplexity(
             model="sonar-pro",
-            temperature=0.3,
+            temperature=0.7,
             max_tokens=512,
             api_key=settings.PPLX_API_KEY
         )
@@ -39,14 +40,17 @@ def initialize_rag():
 
         Pergunta: {question}
 
-        Resposta concisa e técnica:
+        Regras:
+        1. Se o contexto for irrelevante, responda "Não consta na base"
+        2. Priorize informações de PRINCIPIO_ATIVO e CLASSE_TERAPEUTICA
+        3. Formate respostas com marcadores
         """
         
         return RetrievalQA.from_chain_type(
             llm=llm,
             chain_type="stuff",
             retriever=vector_store.as_retriever(
-                search_kwargs={"k": 5}  
+                search_kwargs={"k": 10}  
             ),
             return_source_documents=True,
             chain_type_kwargs={
@@ -65,7 +69,15 @@ async def get_rag_response(question: str, request: Request):
     chain = request.app.state.rag_chain 
     result = chain.invoke({"query": question})
     
+    print("\nDocumentos Recuperados:")
+    for idx, doc in enumerate(result["source_documents"][:5], 1):
+        print(f"\nDocumento {idx}:")
+        print(f"Fonte: {doc.metadata['source']}")
+        print(f"Classe Terapêutica: {doc.metadata.get('CLASSE_TERAPEUTICA', 'N/A')}")
+        print(f"Conteúdo: {doc.page_content[:500]}...")
+    
     sources = [{
+        "content": doc.page_content,
         "source": doc.metadata.get('source', 'Desconhecido'),
         "page": doc.metadata.get('page', 'N/A')
     } for doc in result["source_documents"]]
