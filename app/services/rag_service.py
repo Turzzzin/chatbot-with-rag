@@ -6,13 +6,11 @@ from langchain_perplexity import ChatPerplexity
 from langchain_core.prompts import PromptTemplate
 from app.utils.config import settings
 from fastapi import Request
-import logging
-
-logger = logging.getLogger(__name__)
+from app.utils.logger import logger
 
 def initialize_rag():
     try:
-
+        logger.info("Inicializando RAG...")
         embeddings = SentenceTransformerEmbeddings(
             model_name=settings.EMBEDDINGS_MODEL
         )
@@ -22,12 +20,13 @@ def initialize_rag():
             embedding_function=embeddings,
 
         )
-
+        logger.info(f"Perplexity API Key: {settings.PPLX_API_KEY}")
         llm = ChatPerplexity(
             model="sonar-pro",
             temperature=0.7,
             max_tokens=512,
-            api_key=settings.PPLX_API_KEY
+            api_key=settings.PPLX_API_KEY,
+            timeout=60
         )
         
         prompt_template = """
