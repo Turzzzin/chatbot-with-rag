@@ -48,8 +48,10 @@ function handleChat(userMsg) {
         id = body.session_id;
       }
       botDiv.querySelector("span").classList.remove("loading");
-      botDiv.querySelector("span").innerHTML =
-        (body.answer || body.message || "Sem resposta").replace(/\n/g, "<br>");
+      // Parse markdown and handle line breaks
+      const markdown = body.answer || body.message || "Sem resposta";
+      const parsedContent = marked.parse(markdown);
+      botDiv.querySelector("span").innerHTML = parsedContent;
       scrollChat();
     })
     .catch((error) => {

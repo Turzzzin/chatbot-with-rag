@@ -7,6 +7,7 @@ from langchain_core.prompts import PromptTemplate
 from app.utils.config import settings
 from fastapi import Request
 from app.utils.logger import logger
+import re
 
 def initialize_rag():
     try:
@@ -43,6 +44,10 @@ def initialize_rag():
         1. Se o contexto for irrelevante, responda "Não consta na base"
         2. Priorize informações de PRINCIPIO_ATIVO e CLASSE_TERAPEUTICA
         3. Formate respostas com marcadores
+        4. Caso o usuário peça indicações de uso ou tratamento, responda "Não posso realizar indicações de uso ou tratamento." 
+        5. Nunca realize diagnósticos ou prescreva tratamentos ou indique medicamentos
+        6. Nunca realize suposições ou forneça informações imprecisas
+        7. Adicione SEMPRE a seguinte mensagem ao final: " **AVISO**: Esta resposta foi gerada por uma IA e não substitui a orientação de um profissional de saúde. É importante consultar um médico para obter recomendações personalizadas e seguras."
         """
         
         return RetrievalQA.from_chain_type(
@@ -67,6 +72,11 @@ def initialize_rag():
 async def get_rag_response(question: str, request: Request):  
     chain = request.app.state.rag_chain 
     result = chain.invoke({"query": question})
+
+    # Clean up citations in the answer
+    answer = result["result"]
+    cleaned_answer = re.sub(r'\[\d+\]', '', answer)
+
     
     print("\nDocumentos Recuperados:")
     for idx, doc in enumerate(result["source_documents"][:5], 1):
@@ -81,4 +91,4 @@ async def get_rag_response(question: str, request: Request):
         "page": doc.metadata.get('page', 'N/A')
     } for doc in result["source_documents"]]
     
-    return result["result"], sources
+    return cleaned_answer, sources

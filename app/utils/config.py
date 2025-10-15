@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     EMBEDDINGS_MODEL: str = "all-MiniLM-L6-v2"
     CHROMA_DB_PATH: str = "app/data/vectorstores/medicacoes_db"
     PPLX_API_KEY: str = os.getenv("PPLX_API_KEY", "")
+    GOOGLE_API_KEY: str = os.getenv("GOOGLE_API_KEY", "")
     
     class Config:
         env_file = ".env"
