@@ -10,11 +10,19 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
+    <div id="warning-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Aviso Importante</h2>
+            <p>As respostas são geradas por Inteligencia Artificial e não substituem a orientação de um profissional de saúde.</p> 
+            <p>Sempre consulte um médico para obter recomendações personalizadas e seguras.</p>
+        </div>
+    </div>
     <div class="card">
+        <div class="theme-toggle-container">
+            <button id="theme-toggle">🌙</button>
+        </div>
         <div id="message-section">
-            <div class="message bot-message">
-                <span>Olá, como posso te ajudar hoje?</span>
-            </div>
         </div>
         <div id="input-section">
             <input

@@ -20,6 +20,54 @@ document.addEventListener("DOMContentLoaded", () => {
       sendMessage();
     }
   });
+
+  // Theme toggle logic
+  const themeToggle = document.getElementById("theme-toggle");
+  const body = document.body;
+
+  const applyTheme = () => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      body.classList.add("dark-theme");
+      themeToggle.innerHTML = "☀️";
+    } else {
+      body.classList.remove("dark-theme");
+      themeToggle.innerHTML = "🌙";
+    }
+  };
+
+  applyTheme();
+
+  themeToggle.addEventListener("click", () => {
+    if (body.classList.contains("dark-theme")) {
+      body.classList.remove("dark-theme");
+      localStorage.setItem("theme", "light");
+      themeToggle.innerHTML = "🌙";
+    } else {
+      body.classList.add("dark-theme");
+      localStorage.setItem("theme", "dark");
+      themeToggle.innerHTML = "☀️";
+    }
+  });
+
+  // Modal logic
+  const modal = document.getElementById("warning-modal");
+  const closeButton = document.querySelector(".close-button");
+
+  if (!sessionStorage.getItem("modalShown")) {
+    modal.style.display = "block";
+    sessionStorage.setItem("modalShown", "true");
+  }
+
+  closeButton.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  window.addEventListener("click", (event) => {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  });
 });
 
 function handleChat(userMsg) {

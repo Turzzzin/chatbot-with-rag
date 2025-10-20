@@ -1,7 +1,7 @@
 # app/services/rag_service.py
 from langchain.chains import RetrievalQA
-from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import SentenceTransformerEmbeddings
+from langchain_chroma import Chroma
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_perplexity import ChatPerplexity
 from langchain_core.prompts import PromptTemplate
 from app.utils.config import settings
@@ -12,7 +12,7 @@ import re
 def initialize_rag():
     try:
         logger.info("Inicializando RAG...")
-        embeddings = SentenceTransformerEmbeddings(
+        embeddings = HuggingFaceEmbeddings(
             model_name=settings.EMBEDDINGS_MODEL
         )
 
@@ -21,7 +21,6 @@ def initialize_rag():
             embedding_function=embeddings,
 
         )
-        logger.info(f"Perplexity API Key: {settings.PPLX_API_KEY}")
         llm = ChatPerplexity(
             model="sonar-pro",
             temperature=0.7,
@@ -47,9 +46,8 @@ def initialize_rag():
         4. Caso o usuário peça indicações de uso ou tratamento, responda "Não posso realizar indicações de uso ou tratamento." 
         5. Nunca realize diagnósticos ou prescreva tratamentos ou indique medicamentos
         6. Nunca realize suposições ou forneça informações imprecisas
-        7. Adicione SEMPRE a seguinte mensagem ao final: " **AVISO**: Esta resposta foi gerada por uma IA e não substitui a orientação de um profissional de saúde. É importante consultar um médico para obter recomendações personalizadas e seguras."
         """
-        
+        logger.info("RAG iniciado com sucesso!")
         return RetrievalQA.from_chain_type(
             llm=llm,
             chain_type="stuff",
