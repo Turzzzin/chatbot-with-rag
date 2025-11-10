@@ -180,3 +180,6 @@ app/data/vectorstores
 app/data/vectorstores/*
 notebooks/my_chromadb/*
 node_modules/
+.next/
+DADOS_ABERTOS_MEDICAMENTOS.csv
+DADOS_ABERTOS_MEDICAMENTOS_CLEANED.csv
