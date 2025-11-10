@@ -17,18 +17,39 @@ This project is a REST API designed to provide medication information using Retr
 
 ## Codebase Structure
 
-- `app/`
+`app/`
   - `main.py`: Entry point for the FastAPI application.
-  - `data/vectorstores/`: Stores ChromaDB files.
-  - `models/schemas.py`: Defines data models and schemas.
+  - `data/`
+    - `vectorstores/`
+      - `medicacoes_db/`
+        - `chroma.sqlite3`, vector DB files
+  - `models/`
+    - `schemas.py`: Data models and schemas
   - `routes/`
-    - `api_router.py`: Main API router.
-    - `endpoints/`: Contains route handlers (e.g., `chat.py`).
-  - `services/rag_service.py`: Implements the RAG pipeline logic.
+    - `api_router.py`: Main API router
+    - `endpoints/`
+      - `chat.py`: Chat endpoint
+  - `services/`
+    - `rag_service.py`: RAG pipeline logic
   - `utils/`
-    - `config.py`: Configuration management.
-    - `logger.py`: Logging utilities.
-- `notebooks/`: Jupyter notebooks for data preprocessing.
+    - `config.py`: Configuration management
+    - `logger.py`: Logging utilities
+
+`frontend/`
+  - `eslint.config.mjs`, `next-env.d.ts`, `next.config.ts`, `package.json`, etc.
+  - `public/`: Static assets
+  - `src/`
+    - `app/`
+      - `globals.css`, `layout.tsx`, `providers.tsx`, `page.tsx`
+    - `components/`
+      - `chat-message.tsx`, `chat.tsx`, `navbar.tsx`, `theme-toggle.tsx`
+    - `lib/`
+      - `api.ts`, `utils.ts`
+    - `types/`
+      - `chat.ts`
+
+`notebooks/`
+  - `DADOS_ABERTOS_MEDICAMENTOS.csv`, `DADOS_ABERTOS_MEDICAMENTOS_CLEANED.csv`, `split_data.ipynb`
 
 ## Developer Workflows
 
