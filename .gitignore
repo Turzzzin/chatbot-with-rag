@@ -179,3 +179,4 @@ cython_debug/
 app/data/vectorstores
 app/data/vectorstores/*
 notebooks/my_chromadb/*
+node_modules/
