@@ -2,6 +2,9 @@
 
 This project is a web-based chatbot designed to answer questions about medications, using a technique called Retrieval-Augmented Generation (RAG). It was developed as a University Graduation Project (Trabalho de Graduação - TG).
 
+# IMPORTANT RULE
+The project is being made for Brazil. Keep all the text in frontend in Portuguese.
+
 ## About the Project
 
 The application consists of a Python backend built with **FastAPI** and a simple HTML/CSS/JavaScript frontend.

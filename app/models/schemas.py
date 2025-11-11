@@ -1,7 +1,5 @@
-
 from pydantic import BaseModel, EmailStr
 from typing import Optional
-
 
 class UserBase(BaseModel):
     name: str
@@ -21,6 +19,9 @@ class User(UserBase):
 class UserOut(UserBase):
     id: int
 
+class Token(BaseModel):
+    access_token: str
+    token_type: str
 
 class ChatRequest(BaseModel):
     question: str

@@ -1,11 +1,10 @@
-from passlib.context import CryptContext
+import bcrypt
 from typing import Optional
 from pydantic import EmailStr
-from app.models.schemas import UserCreate, UserLogin, User, UserOut
+from app.models.schemas import UserCreate, User, UserOut
 import sqlite3
 import os
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 DB_PATH = os.getenv("USER_DB_PATH", "app/data/users.db")
 
 def get_db():
@@ -14,7 +13,10 @@ def get_db():
     return conn
 
 def create_user(user: UserCreate) -> Optional[UserOut]:
-    hashed_password = pwd_context.hash(user.password)
+    # Hash password with bcrypt
+    password_bytes = user.password.encode('utf-8')
+    hashed_password = bcrypt.hashpw(password_bytes, bcrypt.gensalt()).decode('utf-8')
+    
     conn = get_db()
     try:
         cur = conn.cursor()
@@ -40,5 +42,7 @@ def get_user_by_email(email: EmailStr) -> Optional[User]:
         return User(id=row["id"], name=row["name"], email=row["email"], hashed_password=row["hashed_password"])
     return None
 
-def verify_password(plain_password, hashed_password):
-    return pwd_context.verify(plain_password, hashed_password)
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    password_bytes = plain_password.encode('utf-8')
+    hashed_bytes = hashed_password.encode('utf-8')
+    return bcrypt.checkpw(password_bytes, hashed_bytes)
