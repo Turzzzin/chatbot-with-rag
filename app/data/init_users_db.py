@@ -1,8 +1,7 @@
 import sqlite3
 import os
-from app.utils.logger import get_logger
+from app.utils.logger import logger
 
-logger = get_logger(__name__)
 
 DB_PATH = os.getenv("USER_DB_PATH", "app/data/users.db")
 
