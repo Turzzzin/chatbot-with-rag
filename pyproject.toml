@@ -19,7 +19,6 @@ dependencies = [
     "bcrypt>=4.3.0",
     "passlib[bcrypt]>=1.7.4",
     "tqdm>=4.67.1",
-    "ipywidgets>=8.1.8",
     "langchain>=1.0.5",
     "langchain-chroma>=1.0.0",
     "langchain-perplexity>=1.0.0",

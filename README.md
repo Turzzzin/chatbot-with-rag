@@ -26,6 +26,34 @@ O sistema consiste em uma aplicação web completa com backend em **Python/FastA
 3. **Geração:** A pergunta do usuário e os documentos recuperados são enviados para o modelo de linguagem **Perplexity AI** (`sonar-pro`), que gera uma resposta em linguagem natural baseada no contexto fornecido
 4. **Orquestração:** Todo o pipeline é orquestrado usando o framework **LangChain**
 
+### Requisitos Funcionais
+
+| ID | Requisito | Descrição |
+|----|-----------|----------|
+| RF01 | Autenticação de Usuários | O sistema deve permitir registro e login de usuários com email e senha, utilizando JWT para autenticação |
+| RF02 | Consulta de Medicamentos | O sistema deve responder perguntas sobre princípios ativos, classes terapêuticas e detentores de registro de medicamentos |
+| RF03 | Pipeline RAG | O sistema deve implementar Retrieval-Augmented Generation para buscar informações relevantes no banco vetorial antes de gerar respostas |
+| RF04 | Interface de Chat | O sistema deve fornecer uma interface web responsiva para interação em tempo real com o chatbot |
+| RF05 | Processamento de CSV | O sistema deve processar o arquivo DADOS_ABERTOS_MEDICAMENTOS.csv e gerar embeddings para armazenamento vetorial |
+| RF06 | Busca Semântica | O sistema deve realizar busca semântica no ChromaDB para recuperar documentos relevantes baseados na pergunta do usuário |
+| RF07 | Renderização de Respostas | O sistema deve renderizar respostas em formato markdown com formatação adequada |
+| RF08 | Restrições de Segurança | O sistema deve recusar fornecer conselhos médicos, prescrições ou diagnósticos |
+
+### Requisitos Não-Funcionais
+
+| ID | Categoria | Requisito | Descrição |
+|----|-----------|-----------|----------|
+| RNF01 | Desempenho | Tempo de Resposta | O sistema deve retornar respostas do chatbot em até 5 segundos para 95% das consultas |
+| RNF02 | Segurança | Criptografia de Senhas | Senhas de usuários devem ser armazenadas com hash bcrypt |
+| RNF03 | Segurança | Autenticação JWT | Tokens JWT devem expirar após período definido e serem validados em cada requisição protegida |
+| RNF04 | Escalabilidade | Banco Vetorial | O ChromaDB deve suportar milhares de embeddings de medicamentos com busca eficiente |
+| RNF05 | Usabilidade | Interface Responsiva | A interface deve ser responsiva e funcionar em dispositivos desktop, tablet e mobile |
+| RNF06 | Manutenibilidade | Arquitetura Modular | O código deve seguir arquitetura modular com separação clara entre frontend, backend e pipeline RAG |
+| RNF07 | Confiabilidade | Tratamento de Erros | O sistema deve tratar erros graciosamente e informar o usuário quando não houver informações disponíveis |
+| RNF08 | Portabilidade | Containerização | O sistema deve ser containerizado com Docker para facilitar deployment |
+| RNF09 | Compatibilidade | Idioma | O sistema deve operar exclusivamente em português brasileiro |
+| RNF10 | Tecnologia | Stack Moderna | Backend em Python 3.12+ com FastAPI e frontend em Next.js 16 com React 19 |
+
 ## 🏗️ Arquitetura
 
 ```
