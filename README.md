@@ -1,8 +1,8 @@
-# Chatbot com RAG - Informações sobre Medicamentos
+# MedQuery: Chatbot com Arquitetura RAG para Consulta de Informações Oficiais sobre Medicamentos da ANVISA
 
 > Assistente inteligente especializado em informações sobre medicamentos utilizando Retrieval-Augmented Generation (RAG)
 
-Este projeto é um chatbot web desenvolvido para responder perguntas sobre medicamentos, utilizando a técnica de Retrieval-Augmented Generation (RAG). Foi desenvolvido como Trabalho de Graduação (TG) universitário.
+O MedQuery é um chatbot web desenvolvido para responder perguntas sobre medicamentos, utilizando a técnica de Retrieval-Augmented Generation (RAG). Foi desenvolvido como Trabalho de Graduação (TG) universitário.
 
 ## 📋 Índice
 
@@ -17,7 +17,7 @@ Este projeto é um chatbot web desenvolvido para responder perguntas sobre medic
 
 ## 🎯 Sobre o Projeto
 
-O sistema consiste em uma aplicação web completa com backend em **Python/FastAPI** e frontend em **Next.js/React**, projetada especificamente para o contexto brasileiro. O núcleo da aplicação é um pipeline RAG que utiliza um dataset privado de informações sobre medicamentos (`DADOS_ABERTOS_MEDICAMENTOS.csv`) para responder perguntas dos usuários.
+O MedQuery consiste em uma aplicação web completa com backend em **Python/FastAPI** e frontend em **Next.js/React**, projetada especificamente para o contexto brasileiro. O núcleo da aplicação é um pipeline RAG que utiliza dados oficiais da ANVISA sobre medicamentos (`DADOS_ABERTOS_MEDICAMENTOS.csv`) para responder perguntas dos usuários.
 
 ### Como Funciona
 
@@ -192,10 +192,10 @@ cd frontend && npm start
 
 ```bash
 # Build da imagem
-docker build -t chatbot-rag .
+docker build -t medquery .
 
 # Execute o container
-docker run -p 3000:3000 -p 8000:8000 chatbot-rag
+docker run -p 3000:3000 -p 8000:8000 medquery
 ```
 
 ## 📖 Uso
@@ -217,7 +217,7 @@ docker run -p 3000:3000 -p 8000:8000 chatbot-rag
 
 ## ⚠️ Aviso Legal
 
-**IMPORTANTE:** Este chatbot fornece apenas informações regulamentares sobre medicamentos baseadas em dados oficiais. As respostas são geradas por IA e **NÃO SUBSTITUEM** a orientação de um profissional de saúde qualificado.
+**IMPORTANTE:** O MedQuery fornece apenas informações regulamentares sobre medicamentos baseadas em dados oficiais da ANVISA. As respostas são geradas por IA e **NÃO SUBSTITUEM** a orientação de um profissional de saúde qualificado.
 
 ## 🤝 Contribuição
 

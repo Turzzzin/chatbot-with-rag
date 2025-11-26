@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Chatbot de Medicamentos",
-  description: "TG de IA - Chatbot de Medicamentos",
+  title: "MedQuery",
+  description: "Chatbot com Arquitetura RAG para Consulta de Informações Oficiais sobre Medicamentos da ANVISA",
 };
 
 export default function RootLayout({

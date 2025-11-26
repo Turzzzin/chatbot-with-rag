@@ -13,7 +13,7 @@ export default function Home() {
               </svg>
             </div>
             <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              Chatbot de <span className="text-blue-600">Medicamentos</span>
+              <span className="text-blue-600">MedQuery</span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
               Assistente inteligente especializado em informações sobre medicamentos. 
