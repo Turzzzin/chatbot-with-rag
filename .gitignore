@@ -179,3 +179,6 @@ cython_debug/
 app/data/vectorstores
 app/data/vectorstores/*
 notebooks/my_chromadb/*
+node_modules/
+.next/
+DADOS_ABERTOS_MEDICAMENTOS_CLEANED.csv
